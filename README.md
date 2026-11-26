@@ -1,6 +1,6 @@
 # lattice-exchange
 
-Chain-specific Buy and Sell pages for Lattice child-chain tokens, linked from the [Lattice explorer](https://lattice.build/explorer/) and served at <https://0xlattice.github.io/lattice-exchange/>. Each child token is exchanged only with its direct parent's token. The pages never handle keys, construct signed transaction bodies, or submit transactions; the Buy page makes read-only requests to public nodes.
+Chain-specific Buy and Sell pages for Lattice child-chain tokens, linked from the [Lattice explorer](https://lattice.build/explorer/) and served at <https://adalinxx.github.io/lattice-exchange/>. Each child token is exchanged only with its direct parent's token. The pages never handle keys, construct signed transaction bodies, or submit transactions; the Buy page makes read-only requests to public nodes.
 
 The two order paths map directly to Lattice consensus actions:
 
