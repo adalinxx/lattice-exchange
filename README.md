@@ -1,6 +1,6 @@
-# Lattice Token Pages
+# lattice-exchange
 
-Chain-specific Buy and Sell pages linked from the Lattice explorer. Each child token is exchanged only with its direct parent's token. The pages never handle keys, construct signed transaction bodies, or submit transactions; the Buy page makes read-only requests to public nodes.
+Chain-specific Buy and Sell pages for Lattice child-chain tokens, linked from the [Lattice explorer](https://lattice.build/explorer/) and served at <https://0xlattice.github.io/lattice-exchange/>. Each child token is exchanged only with its direct parent's token. The pages never handle keys, construct signed transaction bodies, or submit transactions; the Buy page makes read-only requests to public nodes.
 
 The two order paths map directly to Lattice consensus actions:
 
@@ -17,7 +17,7 @@ Amounts are whole units, typed and shown exactly as the chain stores them and as
 
 The page reads, and does not verify:
 
-1. the child chain's nodes, found by the SDK's `ChainNodes` (`vendor/lattice-sdk.js`, shared with the explorer) from the Nexus read service: that service when it serves the chain, then each declared public https host that serves the chain at its path on the same network. What the parent commits never decides;
+1. the child chain's nodes, found by the SDK's `ChainNodes` (`vendor/lattice-sdk.js`) from the Nexus read service: that service when it serves the chain, then each declared public https host that serves the chain at its path on the same network. What the parent commits never decides;
 2. `GET /api/chain/info` and then `GET /api/deposits` on that node, all pages up to a bound, sorted by price with exact integer arithmetic. When a row carries `blockHeight` and `blockHash` (the block that created the deposit), the list shows confirmations: the node's tip height minus that height, plus one. Nodes that do not report it show a dash;
 3. `GET /api/receipt-state` on the parent's node for each deposit about to be shown, so orders someone has already paid for are left out.
 
@@ -39,9 +39,15 @@ A buy request has this shape (amounts and nonces are decimal strings in atomic u
 ## Development
 
 ```sh
-npm install
-npm run dev
+npm ci
+npm run dev      # http://127.0.0.1:5173/
+npm test
+npm run build    # into dist/
 ```
+
+A push to `main` tests, builds and publishes `dist/` to GitHub Pages. The build job can only read the repository; a separate job that runs no repository code publishes what it built.
+
+A page is opened as `?chain=Nexus/<child>#/market/buy` or `#/market/sell`.
 
 ## Wallet handoff
 

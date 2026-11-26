@@ -2,7 +2,7 @@
 // its sell deposits, and ask the parent which are already paid for. Answers
 // are shown, never trusted: the wallet proves each deposit before it pays.
 
-import { ChainNodes, ChainOfflineError } from "../../../vendor/lattice-sdk.js";
+import { ChainNodes, ChainOfflineError } from "../../vendor/lattice-sdk.js";
 import { NEXUS_NODE } from "./config.ts";
 import { byPrice, depositKey, parseDepositRow, unsigned, type Deposit } from "./deposits.ts";
 

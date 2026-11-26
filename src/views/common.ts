@@ -15,7 +15,7 @@ export function market(childPath: string) {
 }
 
 export function crumbsHTML(childParts: readonly string[]): string {
-  const explorerBase = ["127.0.0.1", "localhost"].includes(location.hostname) ? "http://127.0.0.1:5174/explorer/" : "../explorer/";
+  const explorerBase = ["127.0.0.1", "localhost"].includes(location.hostname) ? "http://127.0.0.1:5174/explorer/" : "https://lattice.build/explorer/";
   return childParts.map((part, index) => {
     const url = new URL(explorerBase, location.href);
     url.hash = index === 0 ? "#/" : `#/?c=${encodeURIComponent(childParts.slice(0, index + 1).join("/"))}`;
